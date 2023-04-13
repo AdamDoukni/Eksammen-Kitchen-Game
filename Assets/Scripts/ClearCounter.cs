@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClearCounter : MonoBehaviour, IKitchenObjectParent 
-{
+public class ClearCounter : MonoBehaviour, IKitchenObjectParent {
   
     [SerializeField] private KitchenObjectSO kitchenObjectSO;
     [SerializeField] private Transform counterTopPoint;
@@ -25,7 +24,6 @@ public class ClearCounter : MonoBehaviour, IKitchenObjectParent
             kitchenObjectTransform.GetComponent<KitchenObject>().SetClearCounter(this); 
         } else {
             kitchenObject.SetClearCounter(player);
-            Debug.Log(kitchenObject.GetClearCounter());
         }
 
     }

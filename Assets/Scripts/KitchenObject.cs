@@ -13,24 +13,24 @@ public class KitchenObject : MonoBehaviour
         return kitchenObjectSO;
     }
 
-    public void SetClearCounter(ClearCounter clearCounter) {
-        if (this.clearCounter != null) {
-            this.clearCounter.ClearKitchenObject();
+    public void SetKitchenObjectParent(IKitchenObjectParent kitchenObjectParent) {
+        if (this.kitchenObjectParent != null) {
+            this.kitchenObjectParent.ClearKitchenObject();
         }
 
-        this.clearCounter = clearCounter; 
+        this.kitchenObjectParent = kitchenObjectParent; 
 
-        if (clearCounter.HasKitchenObject()) {
-            Debug.LogError("Counter already has a KitchenObejct!");
+        if (kitchenObjectParent.HasKitchenObject()) {
+            Debug.LogError("IKitchenObjectParent already has a KitchenObejct!");
         }
         
-        clearCounter.SetKitchenObject(this);
+        kitchenObjectParent.SetKitchenObject(this);
 
-        transform.parent = clearCounter.GetKitchenObjectFollowTransform();
+        transform.parent = kitchenObjectParent.GetKitchenObjectFollowTransform();
         transform.localPosition = Vector3.zero;
     }
 
-    public ClearCounter GetClearCounter() {
-        return clearCounter;
+    public IKitchenObjectParent GetKitchenObjectParent() {
+        return kitchenObjectParent;
     }
 }
