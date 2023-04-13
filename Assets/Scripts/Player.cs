@@ -113,6 +113,6 @@ public class Player : MonoBehaviour {
                     selectedCounter = selectedCounter
                 });
     }
-    //Note til montario sig til mig det virker 
+    //Note til montario sig til mig det virker tjek lige
 }
    
