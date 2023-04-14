@@ -14,16 +14,16 @@ public class ClearCounter : MonoBehaviour, IKitchenObjectParent {
     private void Update(){
         if (testing && Input.GetKeyDown(KeyCode.T)) {
             if (kitchenObject != null) {
-                kitchenObject.SetClearCounter(secondClearCounter);
+                kitchenObject.SetKitchenObjectParent(secondClearCounter);
             }
         }
     }
     public void Interact(Player player) {
         if (kitchenObject == null) {
             Transform kitchenObjectTransform = Instantiate(kitchenObjectSO.prefab, counterTopPoint);
-            kitchenObjectTransform.GetComponent<KitchenObject>().SetClearCounter(this); 
+            kitchenObjectTransform.GetComponent<KitchenObject>().SetKitchenObjectParent(this); 
         } else {
-            kitchenObject.SetClearCounter(player);
+            //kitchenObject.SetClearCounter(player);
         }
 
     }
