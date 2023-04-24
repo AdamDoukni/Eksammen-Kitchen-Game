@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeliveryManagerUI : MonoBehaviour
+public class OrderManagerUI : MonoBehaviour
 {
 
     [SerializeField] private Transform container;
@@ -13,13 +13,13 @@ public class DeliveryManagerUI : MonoBehaviour
     }
 
     private void Start() {
-        DeliveryManager.Instance.OnRecipeCompleted += DeliveryManager_OnRecipeCompleted;
-        DeliveryManager.Instance.OnRecipeSpawned += DeliveryManager_OnRecipeSpawned;
+        OrderManager.Instance.OnRecipeCompleted += OrderManager_OnRecipeCompleted;
+        OrderManager.Instance.OnRecipeSpawned += DeliveryManager_OnRecipeSpawned;
 
         UpdateVisual();
     }
 
-    private void DeliveryManager_OnRecipeCompleted(object sneder, System.EventArgs e) {
+    private void OrderManager_OnRecipeCompleted(object sneder, System.EventArgs e) {
         UpdateVisual();
     }
 
@@ -33,10 +33,10 @@ public class DeliveryManagerUI : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        foreach (RecipeSO recipeSO in DeliveryManager.Instance.GetWaitingRecipeSOList()) {
+        foreach (RecipeSO recipeSO in OrderManager.Instance.GetWaitingRecipeSOList()) {
             Transform recipeTransform = Instantiate(recipeTemplate, container);
             recipeTransform.gameObject.SetActive(true);
-            recipeTransform.GetComponent<DeliveryManagerSingleUI>().SetRecipeSO(recipeSO);
+            recipeTransform.GetComponent<OrderManagerSingleUI>().SetRecipeSO(recipeSO);
         }
     }
 }

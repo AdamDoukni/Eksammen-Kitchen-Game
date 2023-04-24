@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class DeliveryManager : MonoBehaviour
+public class OrderManager : MonoBehaviour
 {
     
     public event EventHandler OnRecipeSpawned;
     public event EventHandler OnRecipeCompleted;
-    public static DeliveryManager Instance { get; private set; }
+    public static OrderManager Instance { get; private set; }
     [SerializeField] private RecipeListSO recipeListSO;
 
     private List<RecipeSO> waitingRecipeSOList;
@@ -39,7 +39,7 @@ public class DeliveryManager : MonoBehaviour
         }
     }
 
-    public void DeliveryRecipe(PlateKitchenObject plateKitchenObject)
+    public void OrderRecipe(PlateKitchenObject plateKitchenObject)
     {
         for (int i = 0; i < waitingRecipeSOList.Count; i++) {
             RecipeSO waitingRecipeSO = waitingRecipeSOList[i];

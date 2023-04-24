@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeliveryCounter : BaseCounter
+public class OrderCounter : BaseCounter
 {
 
     public override void Interact(Player player) {
         if (player.HasKitchenObject()) {
             if (player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject)) {
                 // Only accepts Plates
-                DeliveryManager.Instance.DeliveryRecipe(plateKitchenObject);
+                OrderManager.Instance.OrderRecipe(plateKitchenObject);
                 player.GetKitchenObject().DestroySelf();
             }
         }
@@ -18,7 +18,7 @@ public class DeliveryCounter : BaseCounter
         if (player.HasKitchenObject()) {
             if (player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject)) {
                 // Only accepts Plates
-                DeliveryManager.Instance.DeliveryRecipe(plateKitchenObject);
+                OrderManager.Instance.OrderRecipe(plateKitchenObject);
                 player.GetKitchenObject().DestroySelf();
             }
         }

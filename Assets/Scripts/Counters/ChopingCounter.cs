@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class CuttingCounter : BaseCounter, IHasProgress {
+public class ChopingCounter : BaseCounter, IHasProgress {
     
 
     public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;

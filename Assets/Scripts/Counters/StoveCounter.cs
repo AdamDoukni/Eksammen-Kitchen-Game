@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using static CuttingCounter;
+using static ChopingCounter;
 
 public class StoveCounter : BaseCounter, IHasProgress
 {

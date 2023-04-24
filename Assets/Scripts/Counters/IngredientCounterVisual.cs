@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ContainerCounterVisual : MonoBehaviour {
+public class IngredientCounterVisual : MonoBehaviour {
 
     private const string OPEN_CLOSR = "OpenClose";
 
-    [SerializeField] private ContainerCounter containerCounter;
+    [SerializeField] private IngredientCounter ingredientCounter;
     private Animator animator;
 
     private void Awake(){
@@ -14,7 +14,7 @@ public class ContainerCounterVisual : MonoBehaviour {
     }
 
     private void Start() {
-        containerCounter.OnPlayerGrabbedObject += ContainerCounter_OnplayerGrabbedObject;
+        ingredientCounter.OnPlayerGrabbedObject += ContainerCounter_OnplayerGrabbedObject;
     }
 
     private void ContainerCounter_OnplayerGrabbedObject(object sender, System.EventArgs e) {
