@@ -39,6 +39,21 @@ public class PlateCounter : BaseCounter {
                 OnPlateRemoved? .Invoke (this, EventArgs.Empty);
                     
             }
-        }
-    }
+        }}
+
+         public override void Interact(Player1 player) {
+        if (!player.HasKitchenObject()) {
+            // Player is empty handed
+            if (plateSpawnedAmount > 0) {
+                // There's at least one plate here
+                plateSpawnedAmount--;
+
+                KitchenObject.SpawnKitchenObject(plateKitchenObjectSO, player);
+
+                OnPlateRemoved? .Invoke (this, EventArgs.Empty);
+                    
+            }
+        }}
+
+
 }

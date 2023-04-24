@@ -11,4 +11,10 @@ public class TrashCounter : BaseCounter
             player.GetKitchenObject().DestroySelf();
         }
     }
+     public override void Interact(Player1 player)
+    {
+        if (player.HasKitchenObject()) {
+            player.GetKitchenObject().DestroySelf();
+        }
+    }
 }

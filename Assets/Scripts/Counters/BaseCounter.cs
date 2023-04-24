@@ -10,6 +10,11 @@ public class BaseCounter : MonoBehaviour, IKitchenObjectParent
 
       public virtual void InteractAlternate(Player player) {
     }
+     public virtual void Interact(Player1 player) {
+    }
+
+      public virtual void InteractAlternate(Player1 player) {
+    }
     
 
     [SerializeField] private Transform counterTopPoint;

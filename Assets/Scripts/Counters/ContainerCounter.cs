@@ -19,7 +19,13 @@ public class ContainerCounter : BaseCounter {
             OnPlayerGrabbedObject?.Invoke(this, EventArgs.Empty);
         } 
     }
+       public override void Interact(Player1 player) {
+        if (!player.HasKitchenObject()) {
+            // Player is not carrying anything
+            KitchenObject.SpawnKitchenObject(kitchenObjectSO, player);
 
-    
+            OnPlayerGrabbedObject?.Invoke(this, EventArgs.Empty);
+        } 
+    }
 
 }

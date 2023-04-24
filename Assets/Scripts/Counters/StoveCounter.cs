@@ -160,6 +160,72 @@ public class StoveCounter : BaseCounter, IHasProgress
             }
         }
     }
+     public override void Interact(Player1 player)
+    {
+                   if (!HasKitchenObject()) {
+                // There is no KitchenObject here
+                if (player.HasKitchenObject()) {
+                    // Player is carrying something
+                    if (HasRecipeWithInput(player.GetKitchenObject().GetKitchenObjectSO())){
+                        player.GetKitchenObject().SetKitchenObjectParent(this);
+                        
+
+                        fryingRecipeSO = GetFryingRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSO());
+
+
+
+                        state = State.Frying;
+                        fryingTimer = 0f;
+
+                        OnStateChanged?.Invoke(this, new OnStateChangedEventArgs {
+                            state = state
+                        });
+
+                       OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs {
+                           progressNormalized = fryingTimer / fryingRecipeSO.fryingTimerMax
+                        });
+
+                    }
+                } else {
+                    // Player not Carrying anything
+                }
+        } else {
+            // There is a KitchenObject here 
+            if (player.HasKitchenObject()) {
+            // Player is carrying something 
+            
+           if (player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject)) {
+                //Player is holding a Plate
+                if (plateKitchenObject.TryAddIngredient(GetKitchenObject().GetKitchenObjectSO())) {
+                    GetKitchenObject().DestroySelf();
+                }
+            }
+                state = State.Idle;
+
+                OnStateChanged?.Invoke(this, new OnStateChangedEventArgs {
+                        state = state
+                    });
+
+                OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs {
+                        progressNormalized = 0f
+                    });
+            } else {
+                //Player is not caryying anything
+                GetKitchenObject().SetKitchenObjectParent(player);
+
+                state = State.Idle;
+
+                OnStateChanged?.Invoke(this, new OnStateChangedEventArgs {
+                        state = state
+                    });
+
+                OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs {
+                        progressNormalized = 0f
+                    });
+            }
+        }
+    }
+
 
      private bool HasRecipeWithInput(KitchenObjectSO inputKitchenObjectSO) {
             FryingRecipeSO fryingRecipeSO = GetFryingRecipeSOWithInput(inputKitchenObjectSO); 
